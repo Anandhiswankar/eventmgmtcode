@@ -20,9 +20,14 @@ class eventController extends Controller implements HasMiddleware
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-       return events::all();
+        $perPage = $request->query('per_page', 10);
+
+        $events = events::paginate($perPage);
+    
+        return response()->json($events);
+    //    return events::all();
     }
 
     /**

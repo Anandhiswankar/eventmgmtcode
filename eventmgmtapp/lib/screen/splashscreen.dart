@@ -1,4 +1,7 @@
+import 'package:eventmgmtapp/screen/event_display_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
 import 'dart:async';
 import 'login_screen.dart';
 
@@ -15,11 +18,27 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
-      );
+      checkLogin();
     });
+  }
+
+  checkLogin() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    await authProvider.initializeAuth();
+
+    if (mounted) {
+      if (authProvider.isAuthenticated) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const EventDisplayScreen()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
+      }
+    }
   }
 
   @override
@@ -31,7 +50,6 @@ class _SplashscreenState extends State<Splashscreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // App Icon/Logo placeholder
             Container(
               width: 120,
               height: 120,
@@ -50,7 +68,6 @@ class _SplashscreenState extends State<Splashscreen> {
             ),
             const SizedBox(height: 30),
 
-            // App Title
             const Text(
               'Event Management',
               style: TextStyle(
@@ -62,7 +79,6 @@ class _SplashscreenState extends State<Splashscreen> {
             ),
             const SizedBox(height: 10),
 
-            // Subtitle
             const Text(
               'Manage your events with ease',
               style: TextStyle(
@@ -73,7 +89,6 @@ class _SplashscreenState extends State<Splashscreen> {
             ),
             const SizedBox(height: 50),
 
-            // Loading indicator
             const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               strokeWidth: 3,

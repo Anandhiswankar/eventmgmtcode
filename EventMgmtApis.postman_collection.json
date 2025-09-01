@@ -252,7 +252,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6|dev7kvE6ao5SPsV5gLpnnrskeXK6tzv1N43WRfacz0wacaa86bd",
+									"value": "7|devxxQuKJJfp92tVPnmTm0i5vdp6HqchgEsabw4IF3ib99922a0",
 									"type": "string"
 								}
 							]
@@ -267,7 +267,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"EventTitle\": \"updatedop\",\r\n        \"EventDesc\": \"Many people is facing water problem in there home\",\r\n        \"EventDate\": \"2025-09-01 14:30:00\"\r\n    }",
+							"raw": "    {\r\n        \"id\": 3,\r\n        \"EventTitle\": \"op updated man\",\r\n        \"EventDesc\": \"Many people is facing water problem in there home\",\r\n        \"EventDate\": \"2025-09-01 14:30:00\",\r\n        \"user_id\": 1,\r\n        \"created_at\": \"2025-09-01T11:37:23.000000Z\",\r\n        \"updated_at\": \"2025-09-01T11:37:23.000000Z\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -275,16 +275,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/events/4",
+							"raw": "http://{{ip}}:8000/api/events/3",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{ip}}"
 							],
 							"port": "8000",
 							"path": [
 								"api",
 								"events",
-								"4"
+								"3"
 							]
 						}
 					},
